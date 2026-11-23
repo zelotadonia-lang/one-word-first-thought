@@ -5,15 +5,15 @@ The entry is one word, the first that came to mind: platypus.
 Deterministic: same bytes on every run.
 """
 
-import os
+from pathlib import Path
 
 ENTRY = "platypus"
+OUTPUT = Path("/output/entry.txt")
 
 
 def main() -> None:
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
-        f.write(ENTRY)
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(ENTRY, encoding="utf-8", newline="")
 
 
 if __name__ == "__main__":
